@@ -230,7 +230,8 @@ public class MainWindowController implements Initializable {
 					super.updateItem(funcionario, empty);
 					Controller.setListViewCellBackgroundColor(this);
 					if (funcionario != null) {
-						if (isSelected()) {
+						if (isSelected() && listViewFuncionarios.getSelectionModel().getSelectedItems().size() == 1) {
+							hBoxWithButtonsFuncionariosSelected.setText(funcionario.getNome());
 							hBoxWithButtonsFuncionariosSelected.setEditableTextField(listViewFuncionarios.getWidth() * 0.85, s -> {
 								funcionario.setNome(s);
 								hBoxWithButtonsFuncionariosSelected.setText(s);
@@ -250,7 +251,7 @@ public class MainWindowController implements Initializable {
 				if (cell.getItem() == null)
 					return;
 				final Funcionario funcionario = cell.getItem();
-				if (cell.isSelected())
+				if (cell.isSelected() && listViewFuncionarios.getSelectionModel().getSelectedItems().size() == 1)
 					hBoxWithButtonsFuncionariosSelected.getHBoxButtons().setVisible(isNowHovered);
 				else if (isNowHovered) {
 					hBoxWithButtonsFuncionariosHover.setText(funcionario.getNome());
